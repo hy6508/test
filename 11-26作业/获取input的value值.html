@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>主页</title>
+	<meta name="description" content="" />
+</head>
+<body>
+	<input type="button" value="我是按钮" />
+	<input type="text" value="aaaaa" />
+	<input type="button" value="我是按钮" />
+	<input type="text" value="aaaaa" />
+	<input type="button" value="我是按钮" />
+	<input type="text" value="aaaaa" />
+	<input type="button" value="我是按钮" />
+	<input type="text" value="aaaaa" />
+	<script>
+		var inputs = document.getElementsByTagName("input");
+		for (var i = 0 ; i < inputs.length ; i++ ) {
+			inputs[i].index = i;
+			if (i % 2 == 0) {
+				inputs[i].onclick = function () {
+					alert(inputs[this.index + 1].value);
+				} 
+			}
+		}
+	</script>
+</body>
+</html>

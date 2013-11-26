@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>主页</title>
+	<meta name="description" content="" />
+</head>
+<body>
+	<div>改变div类名1</div>
+	<div>改变div类名2</div>
+	<div>改变div类名3</div>
+	<div>改变div类名4</div>
+	<script>
+		// 改变div类名
+		var divs = document.getElementsByTagName("div");
+		divs[0].className = "first";
+		alert(divs[0].className);
+		divs[1].className = "second";
+		alert(divs[1].className);
+		divs[2].className = "third";
+		alert(divs[2].className);
+		divs[3].className = "fourth";
+		alert(divs[3].className);
+		
+	</script>
+</body>
+</html>

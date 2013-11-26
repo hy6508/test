@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>主页</title>
+	<meta name="description" content="" />
+	<style>
+		.cf:before,.cf:after {
+			content:" ";
+			display:table;
+		}
+		.cf:after {
+			clear:both;
+		}
+		.cf {
+			*zoom:1;
+		}
+	</style>
+</head>
+<body class="cf">
+	<button id = "a" style="display:block;">多功能按钮</button>
+	<div style="width:60px; height:70px; border:1px solid red;">1</div>
+	<div style="width:60px; height:70px; border:1px solid red;">2</div>
+	<div style="width:60px; height:70px; border:1px solid red;">我和我的小伙伴都惊呆了</div>
+	<div style="width:60px; height:70px; border:1px solid red;">我和我的小伙伴都惊呆了</div>
+	<script>
+		var button = document.getElementById("a");
+		var divs = document.getElementsByTagName("div");
+		button.onclick = function () {
+			// div1的样式
+			divs[0].style.width = "100px";
+			divs[0].style.height = "100px";
+			divs[0].style.border = "2px solid red";
+			divs[0].style.styleFloat = "left";
+			divs[0].style.cssFloat = "left";
+			// div2的样式
+			divs[1].style.width = "120px";
+			divs[1].style.height = "120px";
+			divs[1].style.background = "yellow";
+			divs[1].style.styleFloat = "left";
+			divs[1].style.cssFloat = "left";
+			divs[1].style.marginLeft = "50px";
+			// div3的样式
+			divs[2].style.width = "150px";
+			divs[2].style.height = "150px";
+			divs[2].style.border = "2px solid green";
+			divs[2].style.font = "italic bold 30px 微软雅黑";
+			divs[2].style.styleFloat = "left";
+			divs[2].style.cssFloat = "left";
+			divs[2].style.marginLeft = "50px";
+			// div4的样式
+			divs[3].style.width = "200px";
+			divs[3].style.height = "200px";
+			divs[3].style.border = "3px dashed blue";
+			divs[3].style.textDecoration = "underline";
+			divs[3].style.lineHeight = "40px";
+			divs[3].style.color = "orange";
+			divs[3].style.styleFloat = "left";
+			divs[3].style.cssFloat = "left";
+			divs[3].style.marginLeft = "50px";
+		}
+	</script>
+</body>
+</html>

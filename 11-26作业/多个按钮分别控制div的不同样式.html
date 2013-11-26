@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>主页</title>
+	<meta name="description" content="" />
+</head>
+<body>
+	<button>背景</button>
+	<button>边框</button>
+	<button>宽高</button>
+	<button>浮动</button>
+	<button>补丁</button>
+	<button>字体</button>
+	<button>文本</button>
+	<button>透明</button>
+	<button>消失</button>
+	<div id = "a">按钮改变我的样式</div>
+	<script>
+		var buttons = document.getElementsByTagName("button");
+		var div = document.getElementById("a");
+		buttons[0].onclick = function () {
+			div.style.background = "blue";
+		}
+		buttons[1].onclick = function () {
+			div.style.border = "5px solid red";
+		}
+		buttons[2].onclick = function () {
+			div.style.width = "300px";
+			div.style.height = "300px";
+		}
+		buttons[3].onclick = function () {
+			div.style.float = "left";
+		}
+		buttons[4].onclick = function () {
+			div.style.margin = "30px 0px 0px 30px";
+			div.style.padding = "50px 50px 0px 50px";
+		}
+		buttons[5].onclick = function () {
+			div.style.font = "italic bold 40px Arial";
+			div.style.color = "#fff";
+		}
+		buttons[6].onclick = function () {
+			div.style.textDecoration = "underline";
+			div.style.textIndent = "2em";
+			div.style.lineHeight = "80px";
+		}
+		buttons[7].onclick = function () {
+			div.style.opacity = "0.7";
+			div.style.filter = "alpha(opacity = 70)";
+		}
+		buttons[8].onclick = function () {
+			div.style.display = "none";
+		}
+	</script>
+</body>
+</html>

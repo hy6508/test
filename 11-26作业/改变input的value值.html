@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>主页</title>
+	<meta name="description" content="" />
+</head>
+<body>
+	<input type="button" value="我是按钮" />
+	<input type="text" value="aaaaa" />
+	<input type="button" value="我是按钮" />
+	<input type="text" value="aaaaa" />
+	<input type="button" value="我是按钮" />
+	<input type="text" value="aaaaa" />
+	<input type="button" value="我是按钮" />
+	<input type="text" value="aaaaa" />
+	<script>
+		var inputs = document.getElementsByTagName("input");
+		// 代码量多
+		/*
+		inputs[0].onclick = function () {
+			inputs[1].value = "我被改变了";
+		}
+		inputs[2].onclick = function () {
+			inputs[3].value = "我被改变了";
+		}
+		inputs[4].onclick = function () {
+			inputs[5].value = "我被改变了";
+		}
+		inputs[6].onclick = function () {
+			inputs[7].value = "我被改变了";
+		}
+		*/
+		
+		// 代码少
+		for (var i = 0 ; i < inputs.length ; i++ ) {
+			inputs[i].index = i;
+			if (i % 2 == 0) {
+				inputs[i].onclick = function () {
+					inputs[this.index + 1].value = "我被改变了";
+				}
+			}
+		}
+		
+	</script>
+</body>
+</html>

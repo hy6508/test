@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>主页</title>
+	<meta name="description" content="" />
+</head>
+<body>
+	<ul id="a">
+		<li>我是黄色</li>
+		<li>我是绿色</li>
+		<li>我是黄色</li>
+		<li>我是绿色</li>
+		<li>我是黄色</li>
+		<li>我是绿色</li>
+		<li>我是黄色</li>
+		<li>我是绿色</li>
+	</ul>
+	<script>
+		var lis = document.getElementById("a").getElementsByTagName("li");
+		for (var i = 0 ; i < lis.length ; i++ ) {
+			lis[i].index = i;
+			if ((i + 1) % 2 == 1) {
+				lis[i].style.background = "yellow";
+			} else {
+				lis[i].style.background = "green";
+			}
+		}
+	</script>
+</body>
+</html>
