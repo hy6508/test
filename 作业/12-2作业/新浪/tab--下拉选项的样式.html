@@ -1,0 +1,219 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>新浪--给下拉选项加样式</title>
+	<meta name="description" content="" />
+	<style>
+		ul,div,p {
+			margin: 0;
+			padding: 0;
+		} 
+		a {
+			text-decoration: none;
+			color: #666;
+			font-size: 12px;
+		}
+		.nav {
+			width: 400px;
+		}
+		.nav div {
+			float: left;
+			width: 100px;
+			height: 40px;
+		}
+		.nav div p {
+			width: 100%;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			font-size: 12px;
+			color: #666;
+		}
+		.nav div ul {
+			width: 102px;
+			height: auto;
+			list-style: none;
+			border: 1px solid #ebbe7a;
+			border-top: none;
+			border-bottom: none;
+			display: none;
+		}
+		.nav div ul li {
+			height: 30px;
+			line-height: 30px;
+			border-bottom: 1px solid #fecc5b;
+			text-indent: 1em;
+		}
+		.nav div .select {
+			color: #ff8400;
+			background-color: #edeef0;
+		}
+		.nav div .show {
+			display:block;
+		}
+		.nav div .pNone {
+			background-color: none;
+			color: #666;
+		}
+		.nav div .ulNone {
+			display: none;
+		}
+		.nav div ul .active {
+			background-color: #fff5da;
+		}
+		.nav div ul .active a {
+			color: #ef9f02;
+		}
+	</style>
+</head>
+<body>
+	<div id="nav" class="nav">
+		<div>
+			<p>我的菜单</p>
+			<ul id="ul1">
+				<li><a href="http://www.sina.com.cn">新闻</a></li>
+				<li><a href="http://www.sina.com.cn">体育</a></li>
+				<li><a href="http://www.sina.com.cn">财经</a></li>
+				<li><a href="http://www.sina.com.cn">娱乐</a></li>
+				<li><a href="http://www.sina.com.cn">科技</a></li>
+			</ul>
+		</div>
+		<div id="ul2">
+			<p>移动客户端</p>
+			<ul>
+				<li><a href="http://www.sina.com.cn">新浪微博</a></li>
+				<li><a href="http://www.sina.com.cn">新浪体育</a></li>
+				<li><a href="http://www.sina.com.cn">新浪财经</a></li>
+				<li><a href="http://www.sina.com.cn">天气通</a></li>
+				<li><a href="http://www.sina.com.cn">新浪阅读</a></li>
+				<li><a href="http://www.sina.com.cn">新浪新闻</a></li>
+			</ul>
+		</div>
+		<div id="ul3">
+			<p>微博</p>
+			<ul>
+				<li><a href="http://www.sina.com.cn">私信</a></li>
+				<li><a href="http://www.sina.com.cn">评论</a></li>
+				<li><a href="http://www.sina.com.cn">@我</a></li>
+			</ul>
+		</div>
+		<div id="ul4">
+			<p>博客</p>
+			<ul>
+				<li><a href="http://www.sina.com.cn">博客评论</a></li>
+				<li><a href="http://www.sina.com.cn">未读提醒</a></li>
+			</ul>
+		</div>
+
+	</div>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<div id="nav2" class="nav">
+		<div id="ul5">
+			<p>我的菜单</p>
+			<ul>
+				<li><a href="http://www.sina.com.cn">新闻</a></li>
+				<li><a href="http://www.sina.com.cn">体育</a></li>
+				<li><a href="http://www.sina.com.cn">财经</a></li>
+				<li><a href="http://www.sina.com.cn">娱乐</a></li>
+				<li><a href="http://www.sina.com.cn">科技</a></li>
+			</ul>
+		</div>
+		<div id="ul6">
+			<p>移动客户端</p>
+			<ul>
+				<li><a href="http://www.sina.com.cn">新浪微博</a></li>
+				<li><a href="http://www.sina.com.cn">新浪体育</a></li>
+				<li><a href="http://www.sina.com.cn">新浪财经</a></li>
+				<li><a href="http://www.sina.com.cn">天气通</a></li>
+				<li><a href="http://www.sina.com.cn">新浪阅读</a></li>
+				<li><a href="http://www.sina.com.cn">新浪新闻</a></li>
+			</ul>
+		</div>
+		<div id="ul7">
+			<p>微博</p>
+			<ul>
+				<li><a href="http://www.sina.com.cn">私信</a></li>
+				<li><a href="http://www.sina.com.cn">评论</a></li>
+				<li><a href="http://www.sina.com.cn">@我</a></li>
+			</ul>
+		</div>
+		<div id="ul8">
+			<p>博客</p>
+			<ul>
+				<li><a href="http://www.sina.com.cn">博客评论</a></li>
+				<li><a href="http://www.sina.com.cn">未读提醒</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<script>
+		function tab (NavId,NavId,NavId,UlId) {
+			var navs = document.getElementById(NavId).getElementsByTagName("p");
+			var cons = document.getElementById(NavId).getElementsByTagName("ul");
+			var divs = document.getElementById(NavId).getElementsByTagName("div");
+			var lis = document.getElementById(UlId).getElementsByTagName("li");
+			for (var i = 0 ; i < divs.length ; i++ ) {
+				divs[i].onmouseover = function () {
+					for (var i = 0 ; i < divs.length ; i++ ) {
+						if (this == divs[i]) {
+							navs[i].className = "select";
+							cons[i].className = "show";
+						} else {
+							navs[i].className = "";
+							cons[i].className = "";
+						}
+					}
+				}	
+			}
+			// 鼠标离开时
+			for (var i = 0 ; i < divs.length ; i++ ) {
+				divs[i].index = i;
+				divs[i].onmouseout = function () {
+					navs[this.index].className = "pNone";
+					cons[this.index].className = "ulNone";
+				}
+			}
+
+			// 给下拉选项加样式
+			for (var i = 0 ; i < lis.length ; i++ ) {
+				lis[i].onmouseover = function () {
+					for (var i = 0 ; i < lis.length ; i++ ) {
+						if (this == lis[i]) {
+							lis[i].className = "active";
+						} else {
+							lis[i].className = "";
+						}
+					}
+				}
+			}
+			for (var i = 0 ; i < lis.length ; i++ ) {
+				lis[i].index = i;
+				lis[i].onmouseout = function () {
+					lis[this.index].clssName = ""; 
+				}
+			}
+		}
+		tab ("nav","nav","nav","ul1");
+		tab ("nav","nav","nav","ul2");
+		tab ("nav","nav","nav","ul3");
+		tab ("nav","nav","nav","ul4");
+		tab ("nav2","nav2","nav2","ul5");
+		tab ("nav2","nav2","nav2","ul6");
+		tab ("nav2","nav2","nav2","ul7");
+		tab ("nav2","nav2","nav2","ul8");
+	</script>
+</body>
+</html>
