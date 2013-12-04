@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>主页</title>
+	<meta name="description" content="" />
+	<style>
+		div {
+			margin-left: 100px;
+		}
+		span {
+			float: left;
+			margin-left: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<input type="button" value="开始" />
+		<input type="button" value="停止" />
+	</div>
+	<div>
+		<span>0</span>
+		<span>0</span>
+		<span>0</span>
+	</div>
+	<script>
+		var inputs = document.getElementsByTagName("input");
+		var spans = document.getElementsByTagName("span");
+		var time = null;
+		inputs[0].onclick = function() {
+			time = setInterval(start,100);
+		}
+		inputs[1].onclick = function() {
+			clearInterval(time);
+		}
+		function start() {
+			spans[2].innerText++;	
+			if (spans[2].innerText == 10) {
+				spans[1].innerText++;
+				spans[2].innerText = 0;
+				if (spans[1].innerText ==60) {
+					spans[0].innerText++;
+					spans[1].innerText = 0;
+				}
+			}
+		}
+		
+	</script>
+</body>
+</html>

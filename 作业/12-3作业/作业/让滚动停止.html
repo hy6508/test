@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>让滚动停止</title>
+	<meta name="description" content="" />
+	<style>
+		#outer {
+			width: 600px;
+			height: 180px;
+			border: 1px solid red;
+			overflow: auto;
+		}
+		#inner {
+			width: 2000px;
+			height: 180px;
+		}
+		#inner img {
+			float: left;
+			width: 200px;
+			height: 180px;
+		}
+	</style>
+</head>
+<body>
+	<div id="outer">
+		<div id="inner">
+			<img src="image/3.jpg" alt="1" title="1" />
+			<img src="image/7.jpg" alt="2" title="1" />
+			<img src="image/4.jpg" alt="3" title="1" />
+			<img src="image/6.jpg" alt="4" title="1" />
+			<img src="image/8.jpg" alt="5" title="1" />
+		</div>
+	</div>
+	<script>
+		// 让滚动停止--清定时器
+		var outer = document.getElementById("outer");
+		var inner = document.getElementById("inner");
+		var imgs = inner.getElementsByTagName("img");
+		// 复制代码
+		inner.innerHTML += inner.innerHTML;
+		// 获取宽度
+		var w = imgs[0].offsetWidth * 5;
+		// 滚动条可以滚动的范围
+		var i = 0;
+		// 定义变量用来清定时器
+		var time = null;
+		time = setInterval(change,17);
+		function change() {
+			i++;
+			if (i >= w) {
+				// 滚动条回到原点
+				i -= w;
+			}
+			outer.scrollLeft = i;
+		}
+		// 清定时器，25秒后滚动停止
+		setTimeout(a,25000);
+		function a() {
+			clearInterval(time);
+		}
+	</script>
+</body>
+</html>
