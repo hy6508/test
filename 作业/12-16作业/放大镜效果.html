@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>放大镜效果</title>
+	<meta name="description" content="" />
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.outer {
+			float: left;
+			width: 380px;
+			height: 380px;
+			position: relative;
+		}
+		.bg {
+			width: 170px;
+			height: 150px;
+			background-color: yellow;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 3;
+			opacity: 0.4;
+			filter:alpha(opacity = 40);
+			cursor: move;
+			display: none;
+		}
+		.outer img {
+			width: 380px;
+			height: 380px;
+		}
+		.right {
+			float: left;
+			margin-left: 15px;
+			width: 280px;
+			height: 260px;
+			overflow: hidden;
+			display: none;
+		}
+		.right img {
+			width: 640px;
+			height: 640px;
+		}
+	</style>
+</head>
+<body>
+	<div id="outer" class="outer">
+		<div id="bg" class="bg"></div>
+		<img src="1.jpg" alt="1" title="1" id="leftPic" />
+	</div>
+	<div id="right" class="right">
+		<img src="1.jpg" alt="1" title="1" id="rightPic" />
+	</div>
+	<script>
+		// 获取外层div
+		var outer = document.getElementById("outer");
+		var right = document.getElementById("right");
+		// 获取背景
+		var bg = document.getElementById("bg");
+		// 获取图片
+		var leftPic = document.getElementById("leftPic");
+		var rightPic = document.getElementById("rightPic");
+
+		// onmousemove
+		outer.onmousemove = function (event) {
+			// 通过事件对象获取当前鼠标坐标
+			var event = event || window.event;
+
+			// bg和right显示
+			bg.style.display = "block";
+			right.style.display = "block";
+
+			// 获取移动后鼠标坐标
+			var moveMX = event.clientX;
+			var moveMY = event.clientY;
+
+			// 计算移动后bg的left和top
+			var x = moveMX - bg.offsetWidth / 2;
+			var y = moveMY - bg.offsetHeight / 2;
+
+			// 判断临界值
+			if (x <= 0) {
+				x = 0;
+			}
+			if (x >= outer.offsetWidth - bg.offsetWidth) {
+				x = outer.offsetWidth - bg.offsetWidth;
+			}
+			if (y <= 0) {
+				y = 0;
+			}
+			if (y >= outer.offsetHeight - bg.offsetHeight) {
+				y = outer.offsetHeight - bg.offsetHeight;
+			}
+
+			// 鼠标移动，bg移动
+			bg.style.left = x + "px";
+			bg.style.top = y + "px";
+
+			// 放大镜
+			var scale = rightPic.offsetWidth / leftPic.offsetWidth;
+			right.scrollLeft = bg.offsetLeft * scale;
+			right.scrollTop = bg.offsetTop * scale;
+		}
+		
+		// 鼠标离开图片时，bg和right都消失
+		outer.onmouseout = function () {
+			bg.style.display = "none";
+			right.style.display = "none";
+		}
+
+
+		// getStyle函数
+		function getStyle(dom,prop) {
+			var value;
+			if (prop in document.body.style) {
+				if (window.getComputedStyle) {
+					value = document.defaultView.getComputedStyle(dom,null)[prop];
+				} else {
+					value = dom.currentStyle[prop];
+				} 
+			} else {
+				value = dom[prop];
+			}
+			value = parseFloat(value);
+			if (isNaN(value)) {
+				value = 0;
+			}
+			return value;
+		}
+	</script>
+</body>
+</html>
