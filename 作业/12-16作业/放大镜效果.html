@@ -49,20 +49,20 @@
 <body>
 	<div id="outer" class="outer">
 		<div id="bg" class="bg"></div>
-		<img src="1.jpg" alt="1" title="1" id="leftPic" />
+		<img src="1.jpg" alt="1" title="1" id="littlePic" />
 	</div>
 	<div id="right" class="right">
-		<img src="1.jpg" alt="1" title="1" id="rightPic" />
+		<img src="1.jpg" alt="1" title="1" id="bigPic" />
 	</div>
 	<script>
-		// 获取外层div
+		// 俩边外层的包裹
 		var outer = document.getElementById("outer");
 		var right = document.getElementById("right");
-		// 获取背景
+		// 背景
 		var bg = document.getElementById("bg");
-		// 获取图片
-		var leftPic = document.getElementById("leftPic");
-		var rightPic = document.getElementById("rightPic");
+		// 图片
+		var littlePic = document.getElementById("littlePic");
+		var bigPic = document.getElementById("bigPic");
 
 		// onmousemove
 		outer.onmousemove = function (event) {
@@ -100,7 +100,7 @@
 			bg.style.top = y + "px";
 
 			// 放大镜
-			var scale = rightPic.offsetWidth / leftPic.offsetWidth;
+			var scale = bigPic.offsetWidth / littlePic.offsetWidth;
 			right.scrollLeft = bg.offsetLeft * scale;
 			right.scrollTop = bg.offsetTop * scale;
 		}
@@ -113,7 +113,7 @@
 
 
 		// getStyle函数
-		function getStyle(dom,prop) {
+		function getStyle(dom, prop) {
 			var value;
 			if (prop in document.body.style) {
 				if (window.getComputedStyle) {
