@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8" />
-	<title>主页</title>
+	<title>计时器</title>
 	<meta name="description" content="" />
 	<style>
 		div {
@@ -28,22 +28,33 @@
 		var inputs = document.getElementsByTagName("input");
 		var spans = document.getElementsByTagName("span");
 		var time = null;
+		var text1 = text2 = text3 =0;
 		inputs[0].onclick = function() {
+			// 清计时器，防止计时器越跑越快
+			if (time) {
+				clearInterval(time);
+			}
 			time = setInterval(start,100);
 		}
 		inputs[1].onclick = function() {
 			clearInterval(time);
 		}
 		function start() {
-			spans[2].innerText++;	
-			if (spans[2].innerText == 10) {
-				spans[1].innerText++;
-				spans[2].innerText = 0;
-				if (spans[1].innerText ==60) {
-					spans[0].innerText++;
-					spans[1].innerText = 0;
+			text3 = spans[2].innerText;
+			text3++;
+			if (text3 == 10) {
+				text2 = spans[1].innerText;
+				text2++;
+				text3 = 0;
+				if (text2 ==60) {
+					text1 = spans[0].innerText;
+					text1++;
+					text2 = 0;
 				}
 			}
+			spans[0].innerText = text1;
+			spans[1].innerText = text2;
+			spans[2].innerText = text3;
 		}
 		
 	</script>
