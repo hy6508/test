@@ -233,7 +233,8 @@
 					if (data.done) {
 						if ((data.data.length >= 1) && (data.data.length <= 10)) {
 							for (var i = 0 ; i < data.data.length ; i++ ) {
-								$("<li>" + data.data[i].text + data.data[i].time + data.data[i].good + "</li>").appendTo(".msg");
+								var time = new Date(data.data[i].time);
+								$("<li>" + data.data[i].text + time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + time.getDate() + "&nbsp;" + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds() + "</li>").appendTo(".msg");
 							}
 						} else {
 							$("<li>没有更多动态</li>").appendTo(".msg");
