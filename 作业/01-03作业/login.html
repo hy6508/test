@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>微博登陆/注册</title>
+	<meta name="description" content="" />
+	<script src="jquery-1.10.2.min.js"></script>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		* input {
+			outline: 0;
+			height: 28px;
+		}
+		.warp {
+			width: 1364px;
+			height: 638px;
+			background: url(images/2.jpg) 0 -134px no-repeat;
+			border: 1px solid #fff;
+		}
+		.bg {
+			width: 100%;
+			height: 100%;
+			background-color: #ccc;
+			opacity: 0.5;
+			display: none;
+		}
+		.regist,.login {
+			width: 300px;
+			height: 300px;
+			background: #fff;
+			margin-top: 120px;
+			margin-left: 230px;
+			border: 1px solid #fff;
+		}
+		.warp .regist {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.regist div,.login div {
+			margin-top: 20px;
+			text-align: center;
+		}
+		.logBtn,.reg,.regBtn {
+			width: 80px;
+			margin-top: 30px;
+			background: #ffb33b;
+			cursor: pointer;
+		}
+		.warp .regist {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="warp">
+		<div class="bg"></div>
+		<div class="login">
+			<div>
+				<input type="text" value="" placeholder="邮箱/会员账号/手机号" class="uid" />
+			</div>
+			<div>
+				<input type="password" value="" placeholder="请输入密码" class="psw" />
+			</div>
+			<div>
+				<input type="submit" value="登录" class="logBtn" />
+				<input type="submit" value="注册" class="reg" />
+			</div>
+		</div>
+		<div class="regist">
+			<div>
+				<span>用户名 : </span>
+				<input type="text" value="" class="un" />
+			</div>
+			<div>
+				<span>&nbsp;&nbsp;密码 : </span>
+				<input type="password" value="" class="pw" />
+			</div>
+			<div>
+				<input type="submit" value="注册" class="regBtn" />
+			</div>
+		</div>
+	</div>
+	<script>
+		$(".uid").focus(function () {
+			this.placeholder = "";
+		}).blur(function () {
+			this.placeholder = "邮箱/会员账号/手机号";
+		});
+		$(".psw").focus(function () {
+			this.placeholder = "";
+		}).blur(function () {
+			this.placeholder = "请输入密码";
+		});
+	
+		$(".logBtn").click(function () {
+			$.ajax({
+				url : "http://ajaxh518.taobaoxyz.com:8081/api/user/?method=login&name=" + $('.uid').val() + "&password=" + $('.psw').val(),
+				type : "get",
+				dataType : "jsonp",
+				jsonp : "jsoncb",
+				success : function (data) {
+					if (data.done) {
+						// 跳转到index页面
+						window.location.href = "index.html";
+					} else {
+						if (data.code == 0) {
+							alert("用户名密码不对");
+						}
+						if (data.code == 1) {
+							alert("其他错误!");
+						}
+					}
+				}
+			});
+		});
+
+		
+		$(".reg").click(function () {
+			$(".bg").css("display", "block");
+			$(".regist").css("display", "block");
+			$(".login").css("display", "none");
+		});
+		$(".regBtn").click(function () {
+			$.ajax({
+				url : "http://ajaxh518.taobaoxyz.com:8081/api/user/?method=regist&name=" + $('.un').val() + "&password=" + $('.pw').val(),
+				type : "get",
+				dataType : "jsonp",
+				jsonp : "jsoncb",
+				success : function (data) {
+					console.log(data);
+					if (data.done) {
+						alert("注册成功，马上登陆！");
+						$(".bg").css("display", "none");
+						$(".regist").css("display", "none");
+						$(".login").css("display", "block");
+					} else {
+						if (data.code == 0) {
+							alert(data.message);
+						}
+						if (data.code == 1) {
+							alert("请填写完整的用户名及密码!!!");
+						}
+						if (data.code == 2) {
+							alert("用户名重复!!!");
+						}
+					}
+				}
+			});
+		});
+	</script>
+</body>
+</html>

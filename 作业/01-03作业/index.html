@@ -1,0 +1,304 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>微博</title>
+	<meta name="description" content="" />
+	<script src="jquery-1.10.2.min.js"></script>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			font-size: 14px;
+		}
+		.warp {
+			width: 1364px;
+			height: 638px;
+			background: url(images/7.jpg) 0 -130px no-repeat;
+			background-size: cover;
+			border: 1px solid #fff;
+		}
+		.top {
+			width: 100%;
+			height: 30px;
+			line-height: 30px;
+			border: 1px solid #ccc;
+			float: right;
+			background: #FFCC33;
+		}
+		.top .user {
+			float: right;
+			margin-right: 60px;
+		}
+		.top .logout {
+			float: right;
+			color: #3333CC;
+			margin-right: 60px;
+			cursor: pointer;
+		}
+		.msg-list,.user-list {
+			width: 450px;
+			height: 520px;
+			border: 2px solid #ccc;
+			float: left;
+			margin-left: 340px;
+			margin-top: 28px;
+		}
+		.text {
+			width: 350px;
+			height: 140px;
+			resize: none;
+			border: 1px solid #ccc;
+			margin-top: 10px;
+			margin-left: 45px;
+			outline: 0;
+		}
+		.sendBtn {
+			width: 80px;
+			height: 30px;
+			line-height: 30px;
+			font-size: 14px;
+			float: right;
+			margin-right: 52px;
+		}
+		.msg {
+			width: 350px;
+			height: 280px;
+			border: 1px solid #ccc;
+			margin-left: 45px;
+			margin-top: 40px;
+			list-style: none;
+			overflow: auto;
+		}
+		.msg li {
+			width: 300px;
+			height: auto;
+			border: 1px solid #ccc;
+			margin: 0 auto;
+			margin-top: 4px;
+			word-wrap: break-word;
+		}
+		.btns {
+			width: 180px;
+			height: 30px;
+			float: right;
+			margin-right: 20px;
+			margin-top: 10px;
+		}
+		.btns button {
+			width: 60px;
+			height: 30px;
+			line-height: 30px;
+			margin-left: 10px;
+		}
+		.user-list {
+			width: 320px;
+			height: 378px;
+			margin-left: 180px;
+			margin-top: 60px;
+		}
+		.user-list p {
+			height: 40px;
+			line-height: 40px;
+			font-size: 20px;
+			font-weight: bold;
+			text-indent: 1em;
+			border-bottom: 2px solid #ccc;
+		}
+		.user-list span {
+			display: block;
+			height: 20px;
+			line-height: 20px;
+			text-align: center;
+			font-size: 18px;
+			cursor: pointer;
+		}
+		.users {
+			height: 310px;
+			list-style: none;
+		}
+		.users li {
+			height: 30px;
+			line-height: 30px;
+			border-bottom: 1px dashed #ccc;
+			text-indent: 2em;
+		}
+		</style>
+</head>
+<body>
+	<div class="warp">
+		<div class="top">
+			<span class="logout">退出</span>
+			<span class="user">你好,</span>
+		</div>
+		<div class="msg-list">
+			<div class="msg-send">
+				<textarea placeholder="说点什么吧..." class="text"></textarea>
+				<button class="sendBtn">发布</button>
+			</div>
+			<ul class="msg">
+			</ul>
+			<div class="btns">
+				<button class="prev">上一页</button>
+				<button class="next">下一页</button>
+			</div>
+		</div>
+		<div class="user-list">
+			<p>用户列表</p>
+			<ul class="users">
+			</ul>
+			<span class="back">返回主页</span>
+		</div>
+	</div>
+	<script>
+		var myuid;
+		var page = 0;
+		// 上一页不可点
+		$(".prev")[0].disabled = true;
+		// 异步请求已登录过的用户名
+		$.ajax({
+			url : "http://ajaxh518.taobaoxyz.com:8081/api/user/?method=getinfo",
+			type : "get",
+			dataType : "jsonp",
+			jsonp : "jsoncb",
+			success : function (data) {
+				// 把获取到的用户名显示到右上角
+				var uname = data.data.name;
+				$(".user").html("你好," + uname);
+				// 获取用户id
+				myuid = data.data._id;
+				// 给ul设置一个属性
+				$(".msg").attr("uid", myuid);
+				userMsg(myuid);
+			}
+		});
+	
+		// 下一页--自己的微博
+		var urid;
+		$(".next").click(function () {
+			page++;
+			if (page != 0) {
+				$(".prev")[0].disabled = false;
+			}
+			$(".msg li").remove();
+			urid = $(".msg").attr("uid");
+			userMsg(urid);
+		});
+		// 上一页--自己的微博
+		$(".prev").click(function () {
+			page--;
+			$(".msg li").remove();
+			urid = $(".msg").attr("uid");
+			userMsg(urid);
+			if (page  == 0) {
+				$(".prev")[0].disabled = true;
+			}
+		});
+
+		// 异步请求已注册用户列表
+		$.ajax({
+			url : "http://ajaxh518.taobaoxyz.com:8081/api/user/?method=listuser&count=10",
+			type: "get",
+			dataType : "jsonp",
+			jsonp : "jsoncb",
+			success : function (data) {
+				if (data.done) {
+					for (var i = 0 ; i <10 ; i++) {
+						$("<li>" + data.data[i].name + "</li>").appendTo($(".users"));
+					}
+					// 获取指定用户的微博
+					$(".users li").click(function () {
+						$(".users li").css("background", "");
+						$(this).css("background", "#FFCC33");
+						$(".sendBtn")[0].disabled = true;
+						urid = data.data[$(this).index()]._id;
+						$(".msg").attr("uid", urid);
+						userMsg(urid);
+					});
+				} else {
+					alert("获取失败");
+				}
+			}
+		});
+		
+		// 获取指定用户微博函数
+		function userMsg(userid) {
+			$.ajax({
+				url : "http://ajaxh518.taobaoxyz.com:8081/api/msg/?method=list&uid=" + userid + "&count=10&page=" + page,
+				type : "get",
+				dataType : "jsonp",
+				jsonp : "jsoncb",
+				success : function (data) {
+					$(".msg li").remove();
+					if (data.done) {
+						if ((data.data.length >= 1) && (data.data.length <= 10)) {
+							for (var i = 0 ; i < data.data.length ; i++ ) {
+								$("<li>" + data.data[i].text + data.data[i].time + data.data[i].good + "</li>").appendTo(".msg");
+							}
+						} else {
+							$("<li>没有更多动态</li>").appendTo(".msg");
+							// 显示完最后一页时page变为0
+							page = 0;
+							userMsg(urid);
+							$(".prev")[0].disabled = true;
+						}
+					}
+				}
+			});
+		}
+		
+		
+		// 返回主页
+		$(".back").click(function () {
+			$(".msg li").remove();
+			$(".users li").css("background", "");
+			$(".sendBtn")[0].disabled = false;
+			$(".next")[0].disabled = false;
+			$(".msg").attr("uid", myuid);
+			userMsg(myuid);
+		});
+
+		// 退出
+		$(".logout").click(function () {
+			$.ajax({
+				url : "http://ajaxh518.taobaoxyz.com:8081/api/user/?method=logout",
+				type : "get",
+				dataType : "jsonp",
+				jsonp : "jsoncb",
+				success : function (data) {
+					if (data.done) {
+						// 退出成功，返回到登陆地页面
+						window.location.href = "login.html";
+					} 
+				}
+			});
+		});
+
+		// 点击发布,发布微博
+		$(".sendBtn").click(function () {
+			$.ajax({
+				url : "http://ajaxh518.taobaoxyz.com:8081/api/msg/?method=add&text=" + $(".text").val(),
+				type : "get",
+				dataType : "jsonp",
+				jsonp : "jsoncb",
+				success : function (data) {
+					if (data.done) {
+						var date = new Date();
+						$("<li>" + $(".text").val() + date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "&nbsp;" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + "</li>").prependTo(".msg");
+					} else {
+						if (data.code == 0) {
+							alert("请先登录");
+						}
+						if (data.code == 1) {
+							alert("对不起，您没有权限");
+						}
+						if (data.code == 2) {
+							alert("其他错误");
+						}
+					}
+				}
+			});
+		});
+	</script>
+</body>
+</html>
