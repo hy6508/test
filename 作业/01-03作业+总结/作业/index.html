@@ -46,7 +46,7 @@
 		}
 		.text {
 			width: 350px;
-			height: 140px;
+			height: 110px;
 			resize: none;
 			border: 1px solid #ccc;
 			margin-top: 10px;
@@ -63,7 +63,7 @@
 		}
 		.msg {
 			width: 350px;
-			height: 280px;
+			height: 310px;
 			border: 1px solid #ccc;
 			margin-left: 45px;
 			margin-top: 40px;
@@ -154,7 +154,7 @@
 		var myuid;
 		var page = 0;
 		// 上一页不可点
-		$(".prev")[0].disabled = true;
+		$(".prev").attr("disabled", true);
 		// 异步请求已登录过的用户名
 		$.ajax({
 			url : "http://ajaxh518.taobaoxyz.com:8081/api/user/?method=getinfo",
@@ -169,29 +169,29 @@
 				myuid = data.data._id;
 				// 给ul设置一个属性
 				$(".msg").attr("uid", myuid);
-				userMsg(myuid);
+				userMsg(myuid, 0);
 			}
 		});
 	
-		// 下一页--自己的微博
+		// 下一页
 		var urid;
 		$(".next").click(function () {
 			page++;
 			if (page != 0) {
-				$(".prev")[0].disabled = false;
+				$(".prev").attr("disabled", false);
 			}
 			$(".msg li").remove();
 			urid = $(".msg").attr("uid");
-			userMsg(urid);
+			userMsg(urid, page);
 		});
-		// 上一页--自己的微博
+		// 上一页
 		$(".prev").click(function () {
 			page--;
 			$(".msg li").remove();
 			urid = $(".msg").attr("uid");
-			userMsg(urid);
+			userMsg(urid, page);
 			if (page  == 0) {
-				$(".prev")[0].disabled = true;
+				$(".prev").attr("disabled", true);
 			}
 		});
 
@@ -208,23 +208,24 @@
 					}
 					// 获取指定用户的微博
 					$(".users li").click(function () {
+						init();
 						$(".users li").css("background", "");
 						$(this).css("background", "#FFCC33");
-						$(".sendBtn")[0].disabled = true;
+						$(".sendBtn").attr("disabled", true);
 						urid = data.data[$(this).index()]._id;
 						$(".msg").attr("uid", urid);
-						userMsg(urid);
+						userMsg(urid, 0);
 					});
 				} else {
 					alert("获取失败");
 				}
 			}
 		});
-		
+
 		// 获取指定用户微博函数
-		function userMsg(userid) {
+		function userMsg(userid, p) {
 			$.ajax({
-				url : "http://ajaxh518.taobaoxyz.com:8081/api/msg/?method=list&uid=" + userid + "&count=10&page=" + page,
+				url : "http://ajaxh518.taobaoxyz.com:8081/api/msg/?method=list&uid=" + userid + "&count=10&page=" + p,
 				type : "get",
 				dataType : "jsonp",
 				jsonp : "jsoncb",
@@ -234,14 +235,16 @@
 						if ((data.data.length >= 1) && (data.data.length <= 10)) {
 							for (var i = 0 ; i < data.data.length ; i++ ) {
 								var time = new Date(data.data[i].time);
-								$("<li>" + data.data[i].text + time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + time.getDate() + "&nbsp;" + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds() + "</li>").appendTo(".msg");
+								$("<li>" + data.data[i].text + "<br />" + time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + time.getDate() + "&nbsp;" + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds() + "&nbsp;<span class='remove'>删除</span></li>").appendTo(".msg");
 							}
+							// 删除微博
+							$(".remove").click(function () {
+								$(this).parent().remove();
+							});
 						} else {
 							$("<li>没有更多动态</li>").appendTo(".msg");
-							// 显示完最后一页时page变为0
-							page = 0;
-							userMsg(urid);
-							$(".prev")[0].disabled = true;
+							page = -1;
+							$(".prev").attr("disabled", true);
 						}
 					}
 				}
@@ -251,12 +254,11 @@
 		
 		// 返回主页
 		$(".back").click(function () {
-			$(".msg li").remove();
 			$(".users li").css("background", "");
-			$(".sendBtn")[0].disabled = false;
-			$(".next")[0].disabled = false;
+			$(".sendBtn").attr("disabled", false);
+			$(".next").attr("disabled", false);
 			$(".msg").attr("uid", myuid);
-			userMsg(myuid);
+			userMsg(myuid, 0);
 		});
 
 		// 退出
@@ -276,7 +278,7 @@
 		});
 
 		// 点击发布,发布微博
-		$(".sendBtn").click(function () {
+		$(".sendBtn").click(function () { 
 			$.ajax({
 				url : "http://ajaxh518.taobaoxyz.com:8081/api/msg/?method=add&text=" + $(".text").val(),
 				type : "get",
@@ -284,8 +286,7 @@
 				jsonp : "jsoncb",
 				success : function (data) {
 					if (data.done) {
-						var date = new Date();
-						$("<li>" + $(".text").val() + date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "&nbsp;" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + "</li>").prependTo(".msg");
+						userMsg(myuid, 0);
 					} else {
 						if (data.code == 0) {
 							alert("请先登录");
@@ -300,6 +301,12 @@
 				}
 			});
 		});
+
+		// 初始化
+		function init() {
+			$(".msg li").remove();
+			page = 0;
+		}
 	</script>
 </body>
 </html>

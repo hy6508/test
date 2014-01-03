@@ -96,6 +96,7 @@
 			this.placeholder = "请输入密码";
 		});
 	
+		// 登录
 		$(".logBtn").click(function () {
 			$.ajax({
 				url : "http://ajaxh518.taobaoxyz.com:8081/api/user/?method=login&name=" + $('.uid').val() + "&password=" + $('.psw').val(),
@@ -124,6 +125,7 @@
 			$(".regist").css("display", "block");
 			$(".login").css("display", "none");
 		});
+		// 注册
 		$(".regBtn").click(function () {
 			$.ajax({
 				url : "http://ajaxh518.taobaoxyz.com:8081/api/user/?method=regist&name=" + $('.un').val() + "&password=" + $('.pw').val(),
@@ -131,7 +133,6 @@
 				dataType : "jsonp",
 				jsonp : "jsoncb",
 				success : function (data) {
-					console.log(data);
 					if (data.done) {
 						alert("注册成功，马上登陆！");
 						$(".bg").css("display", "none");
