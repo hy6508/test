@@ -1,0 +1,379 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>新浪首页框架</title>
+	<meta name="description" content="" />
+	<style>
+		div,p {
+			margin: 0;
+			padding: 0;
+		} 
+		* {
+			font-family: "微软雅黑";
+			font-size: 20px;
+			font-weight: normal;
+		}
+		.cf {
+			display:block;
+			zoom:1;
+		}
+		.cf:after {
+			content: "";
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden;
+		}
+		.top-nav {
+			height: 40px;
+			border: 1px solid #666;
+		}
+		.warp {
+			width: 1000px;
+			margin: 10px auto;
+		}
+		.hd div {
+			border: 1px solid #666;
+		}
+		.logo {
+			float: left;
+			width: 110px;
+			height: 45px;
+			margin-left: 120px;
+		}
+		.search {
+			float: left;
+			width: 445px;
+			height: 38px;
+			margin: 6px 0 0 23px;
+		}
+		.weather {
+			float: left;
+			width: 112px;
+			height: 30px;
+			margin: 17px 0 0 15px;
+		}
+		.nav {
+			float: left;
+			width: 100%;
+			height: 98px;
+			margin-top: 10px;
+		}
+		.con {
+			margin-top: 10px;
+		}
+		.con-adv1 {
+			height: 160px;
+			border: 1px solid #666;
+		}
+		.con-main1,.con-main2,.con-main3,.con-main4,.con-main5 {
+			margin-top: 20px;
+		}
+		.con-main1-lt,.con-main3-lt,.con-main4-lt,.con-main5-lt,.con-main6-lt {
+			float: left;
+			width: 240px;
+		}
+		.con-main1-lt div,.con-main1-cen div,.con-main1-rt div,.con-main2-top div,.con-main2-bom-lt div,.con-main3-lt div,.con-main3-cen div,.con-main3-rt div,.con-main4-lt div,.con-main4-cen div,.con-main4-rt div,.con-main5-lt div,.con-main5-cen div,.con-main5-rt div,.con-main6-lt div,.con-main6-cen div,.con-main6-rt div {
+			border: 1px solid #666;
+		}
+		.con-main1-lt-adv1 {
+			height: 400px;
+		}
+		.con-main1-lt-adv2 {
+			height: 200px;
+			margin-top: 10px;
+		}
+		.con-main1-lt-goods {
+			height: 165px;
+			margin-top: 10px;
+		}
+		.con-main1-lt-edu {
+			height: 215px;
+			margin-top: 10px;
+		}
+		.con-main1-lt-phy {
+			height: 210px;
+			margin-top: 10px;
+		}
+		.con-main1-cen,.con-main3-cen,.con-main4-cen,.con-main5-cen,.con-main6-cen {
+			float: left;
+			width: 360px;
+			margin-left: 20px;
+		}
+		.con-main1-cen-video {
+			height: 510px;
+		}
+		.con-main1-cen-like {
+			height: 282px;
+			margin-top: 10px;
+		}
+		.con-main1-cen-phy {
+			height: 420px;
+			margin-top: 10px;
+		}
+		.con-main1-rt,.con-main3-rt,.con-main4-rt,.con-main5-rt,.con-main6-rt {
+			float: right;
+			width: 360px;
+		}
+		.con-main1-rt-news {
+			height: 805px;
+		}
+		.con-main1-rt-car {
+			height: 420px;
+			margin-top: 10px;
+		}
+		.con-adv2 {
+			height: 155px;
+			margin-top: 10px;
+			border: 1px solid #666;
+		}
+		.con-main2-top-lt {
+			float: left;
+			width: 240px;
+			height: 163px;
+		}
+		.con-main2-top-cen {
+			float: left;
+			width: 360px;
+			height: 392px;
+			margin-left: 20px;
+		}
+		.con-main2-top-rt {
+			float: right;
+			width: 360px;
+			height: 392px;
+		}
+		.con-main2-cen {
+			height: 257px;
+			margin-top: 18px;
+			border: 1px solid #666;
+		}
+		.con-main2-bom {
+			margin-top: 10px;
+		}
+		.con-main2-bom-lt {
+			float: left;
+			width: 240px;
+		}
+		.con-main2-bom-lt1 {
+			height: 207px;
+		}
+		.con-main2-bom-lt2 {
+			height: 170px;
+			margin-top: 10px;
+		}
+		.con-main2-bom-cen {
+			float: left;
+			width: 360px;
+			height: 389px;
+			margin-left: 20px;
+			border: 1px solid #666;
+		}
+		.con-main2-bom-rt {
+			float: right;
+			width: 360px;
+			height: 389px;
+			border: 1px solid #666;
+		}
+		.con-adv3,.con-adv4,.con-adv5,.con-adv6,.con-ft-city,.con-ft-game {
+			height: 90px;
+			margin-top: 20px;
+			border: 1px solid #666;
+		}
+		.con-main3-lt-sea {
+			height: 345px;
+		}
+		.con-main3-lt-news {
+			height: 170px;
+			margin-top: 10px;
+		}
+		.con-main3-lt-imgs {
+			height: 168px;
+			margin-top: 10px;
+		}
+		.con-main3-lt-plan {
+			height: 169px;
+			margin-top: 20px;
+		}
+		.con-main3-cen-science,.con-main3-rt-tel {
+			height: 340px;
+		}
+		.con-main3-cen-game,.con-main3-rt-app {
+			height: 156px;
+			margin-top: 16px;
+		}
+		.con-main3-cen-cul,.con-main3-rt-mil {
+			height: 366px;
+			margin-top: 23px;
+		}
+		.con-main4-lt-trade,.con-main4-lt-yougou {
+			height: 170px;
+		}
+		.con-main4-lt .con-main4-lt-yougou {
+			margin-top: 10px;
+		}
+		.con-main4-lt-hot {
+			height: 290px;
+			margin-top: 25px;
+		}
+		.con-main4-cen-society,.con-main4-rt-game {
+			height: 360px;
+		}
+		.con-main4-cen-business,.con-main4-rt-information {
+			height: 290px;
+			margin-top: 17px;
+		}
+		.con-main5-lt-taobao,.con-main5-cen-women,.con-main5-rt-house {
+			height: 355px;
+		}
+		.con-main5-lt-class,.con-main5-lt-adv {
+			height: 170px;
+			margin-top: 25px;
+		}
+		.con-main5-cen-edu,.con-main5-rt-child {
+			height: 366px;
+			margin-top: 25px;
+		}
+		.con-main6-lt-fas,.con-main6-cen-fas,.con-main6-rt-tour,.con-main6-lt-adv,.con-main6-cen-collect,.con-main6-rt-health {
+			height: 340px;
+			margin-top: 20px;
+		}
+		.con-main6-lt-buddhism,.con-main6-cen-food,.con-main6-rt-cons {
+			height: 330px;
+			margin-top: 20px;
+		}
+		.foot {
+			height: 272px;
+			margin-top: 20px;
+			border: 1px solid #666;
+		}
+	</style>
+</head>
+<body>
+	<div class="top-nav">顶部导航条</div>
+	<div class="warp">
+		<!--head-->
+		<div class="hd cf">
+			<div class="logo">logo</div>
+			<div class="search">搜索框</div>
+			<div class="weather">天气</div>
+			<div class="nav">导航栏</div>
+		</div>
+		<!--content-->
+		<div class="con">
+			<div class="con-adv1">第一块广告</div>
+			<div class="con-main1 cf">
+				<div class="con-main1-lt">
+					<div class="con-main1-lt-adv1">广告</div>
+					<div class="con-main1-lt-goods">新浪产品</div>
+					<div class="con-main1-lt-edu">出国/教育/高考/考研</div>
+					<div class="con-main1-lt-phy">新浪体育台/本周焦点直播</div>
+					<div class="con-main1-lt-adv2">广告</div>
+				</div>
+				<div class="con-main1-cen">
+					<div class="con-main1-cen-video">视频/综艺/秒拍</div>
+					<div class="con-main1-cen-like">猜你喜欢</div>
+					<div class="con-main1-cen-phy">体育/NBA</div>
+				</div>
+				<div class="con-main1-rt">
+					<div class="con-main1-rt-news">新闻/图片</div>
+					<div class="con-main1-rt-car">汽车/新车/购车</div>
+				</div>
+			</div>
+			<div class="con-adv2">第二块广告</div>
+			<div class="con-main2">
+				<div class="con-main2-top cf">
+					<div class="con-main2-top-lt">乐库</div>
+					<div class="con-main2-top-cen">娱乐/八卦</div>
+					<div class="con-main2-top-rt">财经/股票</div>
+				</div>
+				<div class="con-main2-cen">我爱看图/猜你喜欢</div>
+				<div class="con-main2-bom cf">
+					<div class="con-main2-bom-lt">
+						<div class="con-main2-bom-lt1">博主订阅</div>
+						<div class="con-main2-bom-lt2">新浪时尚个人中心</div>
+					</div>
+					<div class="con-main2-bom-cen">博客</div>
+					<div class="con-main2-bom-rt">读书/小说</div>
+				</div>
+			</div>
+			<div class="con-adv3">第三块广告</div>
+			<div class="con-main3 cf">
+				<div class="con-main3-lt">
+					<div class="con-main3-lt-sea">搜索趣图</div>
+					<div class="con-main3-lt-news">新浪新闻</div>
+					<div class="con-main3-lt-imgs">历史图库</div>
+					<div class="con-main3-lt-plan">扬帆计划</div>
+				</div>
+				<div class="con-main3-cen">
+					<div class="con-main3-cen-science">科技/探索</div>
+					<div class="con-main3-cen-game">游戏</div>
+					<div class="con-main3-cen-cul">历史/文化</div>
+				</div>
+				<div class="con-main3-rt">
+					<div class="con-main3-rt-tel">手机</div>
+					<div class="con-main3-rt-app">应用</div>
+					<div class="con-main3-rt-mil">军事</div>
+				</div>
+			</div>
+			<div class="con-adv4">第四块广告</div>
+			<div class="con-main4 cf">
+				<div class="con-main4-lt">
+					<div class="con-main4-lt-trade">行业动态</div>
+					<div class="con-main4-lt-yougou">优购</div>
+					<div class="con-main4-lt-hot">热点微关注</div>
+				</div>
+				<div class="con-main4-cen">
+					<div class="con-main4-cen-society">社会/公益</div>
+					<div class="con-main4-cen-business">商讯</div>
+				</div>
+				<div class="con-main4-rt">
+					<div class="con-main4-rt-game">游戏</div>
+					<div class="con-main4-rt-information">资讯</div>
+				</div>
+			</div>
+			<div class="con-adv5">第五块广告</div>
+			<div class="con-main5 cf">
+				<div class="con-main5-lt">
+					<div class="con-main5-lt-taobao">淘宝网</div>
+					<div class="con-main5-lt-class">新浪微课堂</div>
+					<div class="con-main5-lt-adv">广告</div>
+				</div>
+				<div class="con-main5-cen">
+					<div class="con-main5-cen-women">女性</div>
+					<div class="con-main5-cen-edu">教育/出国</div>
+				</div>
+				<div class="con-main5-rt">
+					<div class="con-main5-rt-house">房产</div>
+					<div class="con-main5-rt-child">育儿</div>
+				</div>
+			</div>
+			<div class="con-adv6">第六块广告</div>
+			<div class="con-main6 cf">
+				<div class="con-main6-lt">
+					<div class="con-main6-lt-fas">时尚热点</div>
+					<div class="con-main6-lt-adv">广告</div>
+					<div class="con-main6-lt-buddhism">佛学</div>
+				</div>
+				<div class="con-main6-cen">
+					<div class="con-main6-cen-fas">时尚/视觉</div>
+					<div class="con-main6-cen-collect">收藏</div>
+					<div class="con-main6-cen-food">美食/宠物</div>
+				</div>
+				<div class="con-main5-rt">
+					<div class="con-main6-rt-tour">旅游</div>
+					<div class="con-main6-rt-health">健康</div>
+					<div class="con-main6-rt-cons">星座</div>
+				</div>
+			</div>
+			<div class="con-ft">
+				<div class="con-ft-city">新浪城市</div>
+				<div class="con-ft-game">游戏</div>
+			</div>
+		</div>
+		<!--foot-->
+		<div class="foot">底部</div>
+	</div>
+</body>
+</html>

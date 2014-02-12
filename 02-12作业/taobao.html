@@ -1,0 +1,290 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>淘宝首页框架</title>
+	<meta name="description" content="" />
+	<style>
+		div,p,ul {
+			margin: 0;
+			padding: 0;
+		}
+		* {
+			font-family: "微软雅黑";
+			font-size: 20px;
+			font-weight: normal;
+		}
+		.cf {
+			display:block;
+			zoom:1;
+		}
+		.cf:after {
+			content: "";
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden;
+		}
+		.top-nav {
+			width: 100%;
+			height: 36px;
+			border: 1px solid #666;
+		}
+		.warp {
+			width: 1190px;
+			margin: 30px auto 0;
+		}
+		.logo {
+			float: left;
+			width: 150px;
+			height: 100px;
+			border: 1px solid #666;
+		}
+		.search {
+			float: right;
+			width: 750px;
+			height: 100px;
+			margin-right: 220px;
+			border: 1px solid #666;
+		}
+		.con {
+			margin-top: 10px;
+		}
+		.nav {
+			height: 40px;
+			border: 1px solid #666;
+		}
+		.con-top {
+			height: 500px;
+		}
+		.con-top-lt {
+			float: left;
+			width: 160px;
+			height: 100%;
+			border: 1px solid #666;
+		}
+		.con-top-cen {
+			float: left;
+			width: 700px;
+			height: 100%;
+			margin-left: 10px;
+		}
+		.con-top-cen1,.con-top-cen2 {
+			width: 700px;
+			height: 250px;
+			border: 1px solid #666;
+		}
+		.con-top-rt {
+			float: left;
+			height: 100%;
+			width: 300px;
+			margin-left: 16px;
+		}
+		.con-top-rt-nav {
+			width: 100%;
+			height: 100px;
+			border: 1px solid #666;
+		}
+		.con-top-rt-user {
+			width: 100%;
+			height: 120px;
+			margin-top: 5px;
+			border: 1px solid #666;
+		}
+		.con-top-rt-ser {
+			width: 100%;
+			height: 268px;
+			margin-top: 5px;
+			border: 1px solid #666;
+		}
+		.con-cen {
+			height: 90px;
+			margin-top: 20px;
+		}
+		.con-cen div {
+			float: left;
+			width: 295px;
+			height: 100%;
+			border: 1px solid #666;
+		}
+		.con-main {
+			margin-top: 10px;
+		}
+		.con-main-lt {
+			float: left;
+			width: 790px;
+		}
+		.con-main-lt div {
+			float: left;
+			width: 390px; 
+			height: 270px;
+			border: 1px solid #666;
+		}
+		.con-main-rt {
+			float: right;
+			width: 378px;
+		}
+		.con-main-rt div {
+			border: 1px solid #666;
+		}
+		.con-main-rt-mod1 {
+			height: 321px;
+		}
+		.con-main-rt-mod2 {
+			height: 600px;
+		}
+		.con-main-rt-mod3 {
+			height: 890px;
+		}
+		.con-main-rt-mod4 {
+			height: 260px;
+		}
+		.con-hot {
+			margin-top: 10px;
+		}
+		.con-hot div {
+			float: left;
+			width: 168px;
+			height: 186px;
+			border: 1px solid #666;
+		}
+		.con-hot .con-hot-nav {
+			width: 100%;
+			height: 40px;
+		}
+		.con-adv {
+			width: 942px;
+			height: 90px;
+			margin: 15px auto;
+		}
+		.con-adv-mod1 {
+			float: left;
+			width: 728px;
+			height: 90px;
+			border: 1px solid #666;
+		}
+		.con-adv-mod2 {
+			float: right;
+			width: 190px;
+			height: 90px;
+			border: 1px solid #666;
+		}
+		.con-foot {
+			height: 177px;
+			padding-top: 30px;
+			border: 1px solid #666;
+		}
+		.con-foot div {
+			float: left;
+			width: 295px;
+			height: 95px;
+			border: 1px solid #666;
+		}
+		.foot {
+			height: 140px;
+			border: 1px solid #666;
+		}
+	</style>
+</head>
+<body>
+	<div class="top-nav">顶部导航条</div>
+	<div class="warp">
+		<!--head-->
+		<div class="cf">
+			<div class="logo">logo</div>
+			<div class="search">搜索框</div>
+		</div>
+		<!--content-->
+		<div class="con">
+			<div class="nav">导航栏</div>
+			<div class="con-top cf">
+				<div class="con-top-lt">商品分类</div>
+				<div class="con-top-cen cf">
+					<div class="con-top-cen1"></div>
+					<div class="con-top-cen2"></div>
+				</div>
+				<div class="con-top-rt">
+					<div class="con-top-rt-nav">小导航条</div>
+					<div class="con-top-rt-user">用户登录/注册</div>
+					<div class="con-top-rt-ser">便民服务</div>
+				</div>
+			</div>
+			<div class="con-cen cf">
+				<div>主题市场</div>
+				<div>特色购物</div>
+				<div>当前热点</div>
+				<div>更多精彩</div>
+			</div>
+			<div class="con-main cf">
+				<div class="con-main-lt">
+					<div>免费试用</div>
+					<div>女人爱搭配</div>
+					<div>男人爱玩</div>
+					<div>运动户外</div>
+					<div>家有二手</div>
+					<div>家居生活</div>
+					<div>淘宝狠爱</div>
+					<div>淘宝美妆</div>
+					<div>家用电器</div>
+					<div>手机数码</div>
+					<div>天天特价</div>
+					<div>吃货世界</div>
+					<div>淘宝母婴</div>
+					<div>汽车生活</div>
+					<div>明显娱乐</div>
+					<div>淘女郎</div>
+					<div>淘宝游戏</div>
+					<div>淘宝电影</div>
+					<div>淘优质房</div>
+					<div>同城生活</div>
+					<div>金融保险</div>
+					<div>反季清仓</div>
+					<div>全球购Go！</div>
+					<div>特色服务</div>
+					<div>淘宝奇葩</div>
+					<div>品牌特价</div>
+					<div>淘宝婚庆</div>
+					<div>淘宝腔调</div>
+					<div>淘宝动漫</div>
+					<div>淘宝孝心</div>
+				</div>
+				<div class="con-main-rt">
+					<div class="con-main-rt-mod1">你可能喜欢的店铺推荐</div>
+					<div class="con-main-rt-mod2">微博动态</div>
+					<div class="con-main-rt-mod3">逛逛精选</div>
+					<div class="con-main-rt-mod4">最婚庆</div>
+				</div>
+			</div>
+			<div class="con-hot cf">
+				<div class="con-hot-nav">热卖单品</div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+			<div class="con-adv cf">
+				<div class="con-adv-mod1"></div>
+				<div class="con-adv-mod2"></div>
+			</div>
+			<div class="con-foot cf">
+				<div>消费者保障</div>
+				<div>新手上路</div>
+				<div>付款方式</div>
+				<div>淘宝特色</div>
+			</div>
+		</div>
+		<!--foot-->
+		<div class="foot">底部</div>
+	</div>
+</body>
+</html>
